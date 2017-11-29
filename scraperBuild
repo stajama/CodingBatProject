@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+def descriptionFormatter(descriptionString):
+    out = "// "
+    for i in range(len(descriptionString)):
+        if i % 79 == 0:
+            out += "\n// "
+        out += i
+    return out
+
+def mainDeal(dictOfInfo):
+    outFile = open('workfile.txt', "w")
+    outFile2 = open('testfile.txt', 'w')
+
+    for section in dictOfInfo:
+        outFile.write("// --- {0}\n\n\n".format(section))
+        # outFile2.write("// --- {0}\n\n\n".format(section))
+
+        for problem in dictOfInfo[section]:
+            outFile.write("// {}\n\n".format(problem))
+            # solution = dictOfInfo[section][problem]["solution"]
+            # solution = solution[ : solution.find("{") + 1] + "\n" + \
+            #            descriptionFormatter(dictOfInfo[section][problem]["description"]) + \
+            #            solution[solution.find("{") + 1 : ] + "\n\n"
+            solution = descriptionFormatter(dictOfInfo[section][problem]["description"])
+            outFile.write(solution)
+            
+            # outFile2.write("// {}\n\n@Test\npublic void {0}Test() {\n\tAnswer answer = new Answer();\n\n".format(problem))
+            # for assertion in dictOfInfo[section][problem]["tests"]:
+            #     # structure should be (function input, expected output)
+            #     outFile2.write("\tassertEquals(answer.{0}({1}))equals({2}, \"Error in {0}\");\n")
+            # outFile2.write("\t}\n}\n\n")
+
+    outFile.close()
+
+    return
+
+
+
