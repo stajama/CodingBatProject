@@ -2,4 +2,4 @@ language: python
 python:
   - "3.6"
 script:
-  - test_codingbat.py
+  - python test_codingbat.py
